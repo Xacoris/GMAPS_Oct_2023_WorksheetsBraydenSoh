@@ -22,22 +22,23 @@ public class MarioHVector2D : MonoBehaviour
         gravityDir = new HVector2D(planet.position - transform.position);  
         moveDir = new HVector2D(gravityDir.y, -gravityDir.x);
 
-        moveDir = moveDir.normalized * -1f;
+        moveDir.Normalize();
+        moveDir = moveDir * -1f;
 
-        rb.AddForce(moveDir * force, ForceMode2D.Force);
+        rb.AddForce(moveDir.ToUnityVector2() * force, ForceMode2D.Force);
 
-        gravityNorm = gravityDir.normalized;
-
-
-        rb.AddForce(gravityNorm * gravityStrength, ForceMode2D.Force);
+        gravityNorm = gravityDir * 1;
+        gravityNorm.Normalize();
 
 
-        float angle = Vector3.SignedAngle(Vector3.down, gravityDir, Vector3.forward);
+        rb.AddForce(gravityNorm.ToUnityVector2() * gravityStrength, ForceMode2D.Force);
+
+        float angle = Vector3.SignedAngle(Vector3.down, gravityDir.ToUnityVector3(), Vector3.forward);
 
         rb.MoveRotation(Quaternion.Euler(0, 0, angle));
 
-        DebugExtension.DebugArrow(transform.position, gravityDir, Color.red);
+        DebugExtension.DebugArrow(transform.position, gravityDir.ToUnityVector3(), Color.red);
 
-        DebugExtension.DebugArrow(transform.position, moveDir, Color.blue);
+        DebugExtension.DebugArrow(transform.position, moveDir.ToUnityVector3(), Color.blue);
     }
 }
