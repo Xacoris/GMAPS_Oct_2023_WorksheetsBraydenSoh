@@ -30,50 +30,56 @@ public class HVector2D
         h = 1.0f;
     }
 
-    // public static HVector2D operator +( /*???*/)
-    // {
+    public static HVector2D operator +(HVector2D a, HVector2D b)
+    {
+        return new HVector2D(a.x + b.x, a.y + b.y);
+    }
 
-    // }
+    public static HVector2D operator -(HVector2D a, HVector2D b)
+    {
+        return new HVector2D(a.x - b.x, a.y - b.y);
+    }
 
-    // public static HVector2D operator -(/*???*/)
-    // {
+    public static HVector2D operator *(HVector2D a, float scalar)
+    {
+        return new HVector2D(a.x * scalar, a.y * scalar);
+    }
 
-    // }
+    public static HVector2D operator /(HVector2D a, float scalar)
+    {
+        return new HVector2D(a.x / scalar, a.y / scalar);
+    }
 
-    // public static HVector2D operator *(/*???*/)
-    // {
+    public float Magnitude()
+    {
+        return (float)Math.Sqrt(x * x + y * y);
+    }
 
-    // }
+    public void Normalize()
+    {
+        float mag = Magnitude();
+        x/= mag;
+        y/= mag;
 
-    // public static HVector2D operator /(/*???*/)
-    // {
+    }
 
-    // }
+     public float DotProduct(HVector2D a)
+     {
+        return (a.x * x + a.y * y);
+     }
 
-    // public float Magnitude()
-    // {
+     public HVector2D Projection(HVector2D a)
+     {
+        HVector2D b = a * 1;
+        b.Normalize();
 
-    // }
+        return (a * (DotProduct(b) / a.Magnitude()));
+     }
 
-    // public void Normalize()
-    // {
-
-    // }
-
-    // public float DotProduct(/*???*/)
-    // {
-
-    // }
-
-    // public HVector2D Projection(/*???*/)
-    // {
-
-    // }
-
-    // public float FindAngle(/*???*/)
-    // {
-
-    // }
+     public float FindAngle(HVector2D a)
+     {
+        return (float)Math.Acos(DotProduct(a) / (Magnitude() * a.Magnitude()));
+     }
 
     public Vector2 ToUnityVector2()
     {
@@ -82,7 +88,7 @@ public class HVector2D
 
     public Vector3 ToUnityVector3()
     {
-        return Vector2.zero; // change this
+        return new Vector3(x, y, 0); // change this
     }
 
     // public void Print()
