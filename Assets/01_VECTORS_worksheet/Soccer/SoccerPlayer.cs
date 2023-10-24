@@ -36,6 +36,7 @@ public class SoccerPlayer : MonoBehaviour
     float Magnitude(Vector3 vector)
     {
         return (float)Mathf.Sqrt(vector.x * vector.x + vector.y * vector.y);
+        //return vector.magnitude;
     }
 
     Vector3 Normalise(Vector3 vector)
@@ -45,11 +46,14 @@ public class SoccerPlayer : MonoBehaviour
         vector.y /= mag;
         vector.z /= mag;
         return vector;
+
+        //return vector.normalized;
     }
 
     float Dot(Vector3 vectorA, Vector3 vectorB)
     {
-        return (vectorA.x * vectorB.x + vectorA.y * vectorB.y);
+        return (vectorA.x * vectorB.x + vectorA.y * vectorB.y + vectorA.z * vectorB.z);
+        //return Vector3.Dot(vectorA, vectorB);
     }
 
     SoccerPlayer FindClosestPlayerDot()
@@ -59,20 +63,18 @@ public class SoccerPlayer : MonoBehaviour
 
         for(int i = 0; i < OtherPlayers.Length; i++)
         {
-            Vector3 toPlayer = OtherPlayers[i].transform.position - transform.forward ;
-            Vector3 toPlayerNorm = Normalise(toPlayer);
+            Vector3 toPlayer = OtherPlayers[i].transform.position - transform.position;
+            Vector3 toPlayerNorm = toPlayer.normalized;
 
-            float dot = Dot(toPlayerNorm, Normalise(Vector3.forward));
-            float angle = Mathf.Acos(dot);
-            angle = angle * Mathf.Rad2Deg;
-
+            float dot = Vector3.Dot(toPlayerNorm, transform.forward.normalized);
+            float angle = Mathf.Acos(dot) * Mathf.Rad2Deg;
             if (angle < minAngle)
             {
-                minAngle = angle;
+                minAngle = angle * 1;
                 closest = OtherPlayers[i];
-                Debug.Log(closest);
-                Debug.Log(OtherPlayers[0]);
             }
+            Debug.Log(toPlayer);
+            //Debug.Log(minAngle);
         }
         return closest;
     }
@@ -97,12 +99,11 @@ public class SoccerPlayer : MonoBehaviour
             }
 
         }
-        Debug.Log(test);
     }
 
     void Update()
     {
-        DebugExtension.DebugArrow(transform.position, transform.forward, Color.red);
+        //DebugExtension.DebugArrow(transform.position, transform.forward, Color.red);
 
         if (IsCaptain)
         {
@@ -112,6 +113,7 @@ public class SoccerPlayer : MonoBehaviour
             DrawVectors();
 
             SoccerPlayer targetPlayer = FindClosestPlayerDot();
+            //Debug.Log(targetPlayer);
             targetPlayer.GetComponent<Renderer>().material.color = Color.green;
             foreach (SoccerPlayer other in  OtherPlayers.Where(t => t != targetPlayer))
             {
