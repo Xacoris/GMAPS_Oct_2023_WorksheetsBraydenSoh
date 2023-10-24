@@ -33,7 +33,6 @@ public class Mario : MonoBehaviour
 
 
         float angle = Vector3.SignedAngle( Vector3.down , gravityDir  , Vector3.forward);
-        Debug.Log(angle);
 
        rb.MoveRotation(Quaternion.Euler(0,0,angle));
 
