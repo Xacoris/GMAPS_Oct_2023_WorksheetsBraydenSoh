@@ -101,42 +101,61 @@ public class HMatrix2D
     //
     //public static HVector2D operator *(HMatrix2D left, HVector2D right)
     //{
-        //return // your code here
+    //return // your code here
     //}
 
     // Note that the second argument is a HMatrix2D object
     //
     //public static HMatrix2D operator *(HMatrix2D left, HMatrix2D right)
     //{
-        //return new HMatrix2D
-        //(
-            /* 
-                00 01 02    00 xx xx
-                xx xx xx    10 xx xx
-                xx xx xx    20 xx xx
-                */
-            //left.Entries[0, 0] * right.Entries[0, 0] + left.Entries[0, 1] * right.Entries[1, 0] + left.Entries[0, 2] * right.Entries[2, 0],
+    //return new HMatrix2D
+    //(
+    /* 
+        00 01 02    00 xx xx
+        xx xx xx    10 xx xx
+        xx xx xx    20 xx xx
+        */
+    //left.Entries[0, 0] * right.Entries[0, 0] + left.Entries[0, 1] * right.Entries[1, 0] + left.Entries[0, 2] * right.Entries[2, 0],
 
-            /* 
-                00 01 02    xx 01 xx
-                xx xx xx    xx 11 xx
-                xx xx xx    xx 21 xx
-                */
-            //left.Entries[0, 0] * right.Entries[0, 1] + left.Entries[0, 1] * right.Entries[1, 1] + left.Entries[0, 2] * right.Entries[2, 1],
+    /* 
+        00 01 02    xx 01 xx
+        xx xx xx    xx 11 xx
+        xx xx xx    xx 21 xx
+        */
+    //left.Entries[0, 0] * right.Entries[0, 1] + left.Entries[0, 1] * right.Entries[1, 1] + left.Entries[0, 2] * right.Entries[2, 1],
 
-        // and so on for another 7 entries
+    // and so on for another 7 entries
     //);
     //}
 
-    //public static bool operator ==(HMatrix2D left, HMatrix2D right)
-    //{
-        // your code here
-    //}
+    public static bool operator ==(HMatrix2D left, HMatrix2D right)
+    {
+        for(int x = 0; x < 3; x++)     //row
+        {
+            for (int y = 0; y < 3; y++) //col
+            {
+                if (left.entries[x, y] != right.entries[x, y]) {//check all and if got diff in one part then its false. 
+                    return false;
+                }
+            }
+        }
+        return true; //If check finish no issues then both matrix equal
+    }
 
-    //public static bool operator !=(HMatrix2D left, HMatrix2D right)
-    //{
-        // your code here
-    //}
+    public static bool operator !=(HMatrix2D left, HMatrix2D right)
+    {
+        for (int x = 0; x < 3; x++)     //row
+        {
+            for (int y = 0; y < 3; y++) //col
+            {
+                if (left.entries[x, y] != right.entries[x, y])
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
     //public override bool Equals(object obj)
     //{
