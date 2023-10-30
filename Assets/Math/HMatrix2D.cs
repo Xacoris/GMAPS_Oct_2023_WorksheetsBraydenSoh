@@ -42,35 +42,35 @@ public class HMatrix2D
 
     public static HMatrix2D operator *(HMatrix2D left, float scalar)
     {
-        return // your code here
+        //return // your code here
     }
 
     // Note that the second argument is a HVector2D object
     //
     public static HVector2D operator *(HMatrix2D left, HVector2D right)
     {
-        return // your code here
+        //return // your code here
     }
 
     // Note that the second argument is a HMatrix2D object
     //
     public static HMatrix2D operator *(HMatrix2D left, HMatrix2D right)
     {
-        return new HMatrix2D
+        //return new HMatrix2D
         (
             /* 
                 00 01 02    00 xx xx
                 xx xx xx    10 xx xx
                 xx xx xx    20 xx xx
                 */
-            left.Entries[0, 0] * right.Entries[0, 0] + left.Entries[0, 1] * right.Entries[1, 0] + left.Entries[0, 2] * right.Entries[2, 0],
+            //left.Entries[0, 0] * right.Entries[0, 0] + left.Entries[0, 1] * right.Entries[1, 0] + left.Entries[0, 2] * right.Entries[2, 0],
 
             /* 
                 00 01 02    xx 01 xx
                 xx xx xx    xx 11 xx
                 xx xx xx    xx 21 xx
                 */
-            left.Entries[0, 0] * right.Entries[0, 1] + left.Entries[0, 1] * right.Entries[1, 1] + left.Entries[0, 2] * right.Entries[2, 1],
+            //left.Entries[0, 0] * right.Entries[0, 1] + left.Entries[0, 1] * right.Entries[1, 1] + left.Entries[0, 2] * right.Entries[2, 1],
 
         // and so on for another 7 entries
     );
@@ -98,12 +98,12 @@ public class HMatrix2D
 
     public HMatrix2D transpose()
     {
-        return // your code here
+        //return // your code here
     }
 
     public float getDeterminant()
     {
-        return // your code here
+        //return // your code here
     }
 
     public void setIdentity()
@@ -128,15 +128,15 @@ public class HMatrix2D
 
     public void Print()
     {
-        string result = "";
-        for (int r = 0; r < 3; r++)
+        //string result = "";
+        //for (int r = 0; r < 3; r++)
         {
-            for (int c = 0; c < 3; c++)
+            //for (int c = 0; c < 3; c++)
             {
-                result += entries[r, c] + "  ";
+                //result += entries[r, c] + "  ";
             }
-            result += "\n";
+            //result += "\n";
         }
-        Debug.Log(result);
+        //Debug.Log(result);
     }
 }
