@@ -32,12 +32,13 @@ public class TestMatrix : MonoBehaviour
         {
             for (int c = 0; c < 3; c++)
             {
-                Debug.Log(resultMat.entries[r,c]);
+                //Debug.Log(resultMat.entries[r,c]);
             }
         }
         
 
         resultVec = mat2 * vec1;
-        Debug.Log(resultVec);
+        Debug.Log(resultVec.x);
+        Debug.Log(resultVec.y);
     }
 }
