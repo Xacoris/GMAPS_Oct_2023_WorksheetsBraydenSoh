@@ -35,7 +35,7 @@ public class SoccerPlayer : MonoBehaviour
 
     float Magnitude(Vector3 vector)
     {
-        return (float)Mathf.Sqrt(vector.x * vector.x + vector.y * vector.y);
+        return (float)Mathf.Sqrt(vector.x * vector.x + vector.y * vector.y + vector.z * vector.z);
         //return vector.magnitude;
     }
 
@@ -64,9 +64,9 @@ public class SoccerPlayer : MonoBehaviour
         for(int i = 0; i < OtherPlayers.Length; i++)
         {
             Vector3 toPlayer = OtherPlayers[i].transform.position - transform.position;
-            Vector3 toPlayerNorm = toPlayer.normalized;
+            Vector3 toPlayerNorm = Normalise(toPlayer);
 
-            float dot = Vector3.Dot(toPlayerNorm, transform.forward.normalized);
+            float dot = Vector3.Dot(toPlayerNorm, Normalise(transform.forward));
             float angle = Mathf.Acos(dot) * Mathf.Rad2Deg;
             if (angle < minAngle)
             {

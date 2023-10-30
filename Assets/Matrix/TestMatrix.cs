@@ -10,11 +10,17 @@ public class TestMatrix : MonoBehaviour
     {
         mat.setIdentity();
         mat.Print();
+        Question2();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    void Question2()
+    {
+
     }
 }
