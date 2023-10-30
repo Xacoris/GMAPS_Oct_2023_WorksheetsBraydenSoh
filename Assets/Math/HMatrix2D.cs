@@ -8,12 +8,19 @@ public class HMatrix2D
 
     public HMatrix2D()
     {
-        // your code here
+    // your code here
+        
     }
 
     public HMatrix2D(float[,] multiArray)
     {
-        // your code here
+        for (int x = 0; x < 3; x++)     //row
+        {
+            for (int y = 0; y < 3; y++) //col
+            {
+                entries[x,y] = multiArray[x,y];
+            }
+        }
     }
 
     public HMatrix2D(float m00, float m01, float m02,
@@ -21,43 +28,88 @@ public class HMatrix2D
              float m20, float m21, float m22)
     {
         // First row
-        // your code here
+        entries[0, 0] = m00;
 
         // Second row
-        // your code here
+        entries[0, 1] = m01;
 
         // Third row
-        // your code here
+        entries[0, 2] = m02;
+
+        entries[1, 0] = m10;
+
+        entries[1, 1] = m11;
+
+        entries[1, 2] = m12;
+
+        entries[2, 0] = m20;
+
+        entries[2, 1] = m21;
+
+        entries[2, 2] = m22;
     }
 
     public static HMatrix2D operator +(HMatrix2D left, HMatrix2D right)
     {
-        //return // your code here
+        HMatrix2D Check = new HMatrix2D();
+        for (int x = 0; x < 3; x++)     //row
+        {
+            for (int y = 0; y < 3; y++) //col
+            {
+                Check.entries[x,y] = (left.entries[x, y] + right.entries[x, y]);
+            }
+        }
+        return Check;
+                //return new HMatrix2D(left.entries[0, 0] + right.entries[0, 0], left.entries[0, 1] + right.entries[0, 1], left.entries[0, 2] + right.entries[0, 2],
+            //left.entries[1, 0] + right.entries[1, 0], left.entries[1, 1] + right.entries[1, 1], left.entries[1, 2] + right.entries[1, 2],
+            //left.entries[2, 0] + right.entries[2, 0], left.entries[2, 1] + right.entries[2, 1], left.entries[2, 2] + right.entries[2, 2]);
     }
 
     public static HMatrix2D operator -(HMatrix2D left, HMatrix2D right)
     {
-        //return // your code here
+        HMatrix2D Check = new HMatrix2D();
+        for (int x = 0; x < 3; x++)     //row
+        {
+            for (int y = 0; y < 3; y++) //col
+            {
+                Check.entries[x, y] = (left.entries[x, y] + right.entries[x, y]);
+            }
+        }
+        return Check;
+            //return new HMatrix2D(left.entries[0, 0] - right.entries[0, 0], left.entries[0, 1] - right.entries[0, 1], left.entries[0, 2] - right.entries[0, 2],
+            //left.entries[1, 0] - right.entries[1, 0], left.entries[1, 1] - right.entries[1, 1], left.entries[1, 2] - right.entries[1, 2],
+            //left.entries[2, 0] - right.entries[2, 0], left.entries[2, 1] - right.entries[2, 1], left.entries[2, 2] - right.entries[2, 2]);
     }
 
     public static HMatrix2D operator *(HMatrix2D left, float scalar)
     {
-        //return // your code here
+        HMatrix2D Check = new HMatrix2D();
+        for (int x = 0; x < 3; x++)     //row
+        {
+            for (int y = 0; y < 3; y++) //col
+            {
+                Check.entries[x, y] = (left.entries[x, y] * scalar);
+            }
+        }
+        return Check;
+        //return new HMatrix2D(left.entries[0, 0] * scalar, left.entries[0, 1] * scalar, left.entries[0, 2] * scalar,
+            //left.entries[1, 0] * scalar, left.entries[1, 1] * scalar, left.entries[1, 2] * scalar,
+            //left.entries[2, 0] * scalar, left.entries[2, 1] * scalar, left.entries[2, 2] * scalar);
     }
 
     // Note that the second argument is a HVector2D object
     //
-    public static HVector2D operator *(HMatrix2D left, HVector2D right)
-    {
+    //public static HVector2D operator *(HMatrix2D left, HVector2D right)
+    //{
         //return // your code here
-    }
+    //}
 
     // Note that the second argument is a HMatrix2D object
     //
-    public static HMatrix2D operator *(HMatrix2D left, HMatrix2D right)
-    {
+    //public static HMatrix2D operator *(HMatrix2D left, HMatrix2D right)
+    //{
         //return new HMatrix2D
-        (
+        //(
             /* 
                 00 01 02    00 xx xx
                 xx xx xx    10 xx xx
@@ -73,70 +125,85 @@ public class HMatrix2D
             //left.Entries[0, 0] * right.Entries[0, 1] + left.Entries[0, 1] * right.Entries[1, 1] + left.Entries[0, 2] * right.Entries[2, 1],
 
         // and so on for another 7 entries
-    );
-    }
+    //);
+    //}
 
-    public static bool operator ==(HMatrix2D left, HMatrix2D right)
-    {
+    //public static bool operator ==(HMatrix2D left, HMatrix2D right)
+    //{
         // your code here
-    }
+    //}
 
-    public static bool operator !=(HMatrix2D left, HMatrix2D right)
-    {
+    //public static bool operator !=(HMatrix2D left, HMatrix2D right)
+    //{
         // your code here
-    }
+    //}
 
-    public override bool Equals(object obj)
-    {
+    //public override bool Equals(object obj)
+    //{
         // your code here
-    }
+    //}
 
-    public override int GetHashCode()
-    {
+    //public override int GetHashCode()
+    //{
         // your code here
-    }
+    //}
 
-    public HMatrix2D transpose()
-    {
+    //public HMatrix2D transpose()
+    //{
         //return // your code here
-    }
+    //}
 
-    public float getDeterminant()
-    {
+    //public float getDeterminant()
+    //{
         //return // your code here
-    }
+    //}
 
     public void setIdentity()
     {
-        // your code here
+        for (int x = 0; x < 3; x++)     //row
+        {
+            for (int y = 0; y < 3; y++) //col
+            {
+                entries[x, y] = x == y ? 1 : 0;
+                //if (x == y)
+                //{
+                //entries[x,y] = 1;
+                //}
+
+                //else
+                //{
+                //entries[x, y] = 0;
+                //}
+            }
+        }
     }
 
-    public void setTranslationMat(float transX, float transY)
-    {
+    //public void setTranslationMat(float transX, float transY)
+    //{
         // your code here
-    }
+    //}
 
-    public void setRotationMat(float rotDeg)
-    {
+    //public void setRotationMat(float rotDeg)
+    //{
         // your code here
-    }
+    //}
 
-    public void setScalingMat(float scaleX, float scaleY)
-    {
+    //public void setScalingMat(float scaleX, float scaleY)
+    //{
         // your code here
-    }
+    //}
 
     public void Print()
     {
-        //string result = "";
-        //for (int r = 0; r < 3; r++)
+        string result = "";
+        for (int r = 0; r < 3; r++)
         {
-            //for (int c = 0; c < 3; c++)
+            for (int c = 0; c < 3; c++)
             {
-                //result += entries[r, c] + "  ";
+                result += entries[r, c] + "  ";
             }
-            //result += "\n";
+            result += "\n";
         }
-        //Debug.Log(result);
+        Debug.Log(result);
     }
 }
