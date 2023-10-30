@@ -28,7 +28,15 @@ public class TestMatrix : MonoBehaviour
         HVector2D resultVec = new HVector2D();
 
         resultMat = mat1 * mat2;
-        print(resultMat);
+        for (int r = 0; r < 3; r++)
+        {
+            for (int c = 0; c < 3; c++)
+            {
+                Debug.Log(resultMat.entries[r,c]);
+            }
+        }
+        
+
         resultVec = mat2 * vec1;
         Debug.Log(resultVec);
     }
