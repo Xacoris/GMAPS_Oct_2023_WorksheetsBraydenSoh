@@ -38,20 +38,20 @@ public class Ball2D : MonoBehaviour
         return distance <= Radius + other.Radius;
     }
 
-    //public void FixedUpdate()
-    //{
-    //    UpdateBall2DPhysics(Time.deltaTime);
-    //}
+    public void FixedUpdate()
+    {
+        UpdateBall2DPhysics(Time.deltaTime);
+    }
 
-    //private void UpdateBall2DPhysics(float deltaTime)
-    //{
-    //    float displacementX = /*your code here*/;
-    //    float displacementY = /*your code here*/;
+    private void UpdateBall2DPhysics(float deltaTime)
+    {
+        float displacementX = Velocity.x * deltaTime;
+        float displacementY = Velocity.y * deltaTime;
 
-    //    Position.x += /*your code here*/;
-    //    Position.y += /*your code here*/;
+        Position.x += displacementX;
+        Position.y += displacementY;
 
-    //    transform.position = new Vector2(/*your code here*/);
-    //}
+        transform.position = new Vector2(Position.x, Position.y);
+    }
 }
 
