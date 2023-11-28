@@ -48,8 +48,8 @@ public class Ball2D : MonoBehaviour
         float displacementX = Velocity.x * deltaTime;
         float displacementY = Velocity.y * deltaTime;
 
-        Position.x += displacementX;
-        Position.y += displacementY;
+        Position.x += -displacementX;
+        Position.y += -displacementY;
 
         transform.position = new Vector2(Position.x, Position.y);
     }
