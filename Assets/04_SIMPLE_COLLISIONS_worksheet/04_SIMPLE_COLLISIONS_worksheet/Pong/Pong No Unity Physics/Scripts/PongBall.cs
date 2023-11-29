@@ -85,7 +85,6 @@ namespace pool
                 {
                      //Set xpos to where the ball would be on the x axis when the ball collides with leftwall.
                      xpos = leftWall.transform.position.x + wallOffset + radius;
-                    ;
                 }
                 //set ball position along x axis using xpos so that the ball will not move beyond the right wall and left wall. As in it will not fly out but instead will stay in the box.
                 transform.position = new Vector3(xpos,
@@ -93,13 +92,12 @@ namespace pool
                                                  transform.position.z);
                 //After that, invert the speed to ensure the ball moves in the opposite direction of the initial collision.
                 speedX = -speedX;
-                ;
             }
 
             //Compare topwall position with offset with the top side of the ball and
             if (transform.position.y + radius > topWall.transform.position.y - wallOffset
                 //Compare bottomwall position with offset with the bottom side of the ball to see if the walls and ball collide
-                || transform.position.y - radius < bottomWall.transform.position.x + wallOffset)
+                || transform.position.y - radius < bottomWall.transform.position.y + wallOffset)
             {
                 //Checks the speed value along Y axis. Since it is positive, the ball would be moving up.
                 if (speedY > 0f)
@@ -120,7 +118,6 @@ namespace pool
                                                  transform.position.z);
                 //After that, invert the speed to ensure the ball moves in the opposite direction of the initial collision.
                 speedY = -speedY;
-                ;
             }
         }
 
@@ -163,6 +160,8 @@ namespace pool
             ballLeft = transform.position.x - radius;
             ballRight = transform.position.x + radius;
             // 
+            //This will cause a bug whereby the position of the ball will sometimes go past the paddles before the velocity inverts
+            //as transform.Translate would be called after setting the position of the ball.
 
             HandleBoundaryCollision();
             HandlePaddleCollision();
