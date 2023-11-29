@@ -58,30 +58,32 @@
 
              // VectorA in the lecture slides.
              //
-            // Vector2 lineToPointVec = /*Your code here*/;
+             Vector2 lineToPointVec = transform.position - other.bottom.position;
 
              // VectorB.
              //
-             //float proj = Vector2.Dot(,);
+             float proj = Vector2.Dot(lineToPointVec, other.wallVec.normalized);
 
              // If the projection is -ve (before the start of the line segment) or
              // greater than the length of the line , then there's no collision.
              // Can you figure out why we have this here? Draw a diagram to explain
              // the concept.
+             
+             //If the projection is greater than the length of the line, then this means that the point is already beyond the length of the wall vector and thus a perpendicular vector from the wall would not detect the point.
              //
-             //if (proj < 0 || proj > other.wallVec.magnitude)
-             //{
+             if (proj < 0 || proj > other.wallVec.magnitude)
+             {
                  return false;
-             //}
+             }
 
              // Calculate perpendicular distance using Pythagoras Theorem
              //
-             //float distanceFromLine = /*Your code here*/;
+             float distanceFromLine = Mathf.Sqrt(lineToPointVec.SqrMagnitude() - other.wallVec.SqrMagnitude());
 
              //DebugExtension.DebugArrow(other.center, -other.normalVec * 5, Color.red);
              //DebugExtension.DebugArrow(other.bottom.transform.position, proj * other.vec.normalized, Color.red, 100f);
 
-             //return distanceFromLine /*Your code here*/ Radius * 1.25f;
+             return distanceFromLine <= Radius * 1.25f;
          }
 
          // Moving the ball.
