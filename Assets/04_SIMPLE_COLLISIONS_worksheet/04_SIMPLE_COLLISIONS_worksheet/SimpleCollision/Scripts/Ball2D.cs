@@ -80,8 +80,8 @@
              //
              float distanceFromLine = Mathf.Sqrt(lineToPointVec.SqrMagnitude() - other.wallVec.SqrMagnitude());
 
-             //DebugExtension.DebugArrow(other.center, -other.normalVec * 5, Color.red);
-             //DebugExtension.DebugArrow(other.bottom.transform.position, proj * other.vec.normalized, Color.red, 100f);
+             DebugExtension.DebugArrow(other.center, -other.normalVec * 5, Color.red);
+             DebugExtension.DebugArrow(other.bottom.transform.position, proj * other.wallVec.normalized, Color.red, 100f);
 
              return distanceFromLine <= Radius * 1.25f;
          }

@@ -39,8 +39,18 @@
              {
                  if (whiteBall.IsCollidingWith(wall))
                  {
-                     Debug.Log("Collision!");
+                     //Debug.Log("Collision!");
                      /*Your code here*/
+
+                     Debug.Log(wall.wallVec);
+                     Debug.Log(wall.normalVec);
+
+                      Vector2 vi = whiteBall.Velocity;
+                      float projectionLength = Vector2.Dot(-whiteBall.Velocity, wall.normalVec);
+                      Vector2 projectionVec = projectionLength * wall.normalVec;
+                      Vector2 vf = (2*projectionVec) + vi;
+                      whiteBall.Velocity = vf;
+
 
                      // The code below is just for debugging. If the ball collides
                      // with the wall, the ball will stop, the wall will be set to
@@ -48,13 +58,16 @@
                      // (only in the Scene view - make sure the camera is in a 
                      // position to see them).
                      //
-                     // wall.GetComponent<SpriteRenderer>().material.color = Color.red;
+                      //wall.GetComponent<SpriteRenderer>().material.color = Color.red;
 
-                     // DrawVector(white.transform.position, -projectionVec, Color.red);
-                     // DrawVector(white.transform.position, vf, Color.blue);
+                      //DrawVector(white.transform.position, -projectionVec, Color.red);
+                      //DrawVector(white.transform.position, vf, Color.blue);
 
-                     // whiteBall.Velocity = Vector3.zero;
-                     // paused = true;
+                      //whiteBall.Velocity = Vector3.zero;
+                      //paused = true;
+
+                      
+                      
                  }
                  else
                  {
