@@ -9,12 +9,14 @@ public class FirstLaw : MonoBehaviour
 
     void Start()
     {
+        //Gets the rigidbody component so that I can use AddForce to move the object to the right.
         rb = GetComponent<Rigidbody>();
         rb.AddForce(transform.right, ForceMode.Force);
      }
 
     void FixedUpdate()
     {
+        //debugs the object's current position
         Debug.Log(transform.position);
     }
 }

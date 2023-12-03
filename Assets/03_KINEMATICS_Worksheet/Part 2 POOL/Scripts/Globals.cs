@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Globals : MonoBehaviour
 {
+    //Global variables to be used
+
     //Physics
     public static float VELOCITY_THRESHOLD = 10f;
     public static float PHYSICS_FRICTION_SPEED_REDUCTION = 5f;

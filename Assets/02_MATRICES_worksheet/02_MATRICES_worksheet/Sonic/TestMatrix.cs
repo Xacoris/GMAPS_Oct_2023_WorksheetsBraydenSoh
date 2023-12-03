@@ -8,8 +8,10 @@ public class TestMatrix : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Prints out the matrix values for identity matrix mat
         mat.setIdentity();
         mat.Print();
+
         Question2();
     }
 
@@ -27,17 +29,21 @@ public class TestMatrix : MonoBehaviour
         HVector2D vec1 = new HVector2D(3,4);
         HVector2D resultVec = new HVector2D();
 
+        //multiplies 3x3 matrices mat1 with mat2.
         resultMat = mat1 * mat2;
         for (int r = 0; r < 3; r++)
         {
             for (int c = 0; c < 3; c++)
             {
+                //Prints out all values within the matrix based on row and column
                 //Debug.Log(resultMat.entries[r,c]);
             }
         }
         
+        //multiplies a 3x3 matrix with a 3x1 HVector2D matrix
+        resultVec = mat2 * vec1; 
 
-        resultVec = mat2 * vec1;
+        //Prints out the result x and y values of the HVector2 variable.
         Debug.Log(resultVec.x);
         Debug.Log(resultVec.y);
     }

@@ -27,25 +27,34 @@ public class HMatrix2D
              float m10, float m11, float m12,
              float m20, float m21, float m22)
     {
-        // First row
+        // First row 
+        //First col
         entries[0, 0] = m00;
 
-        // Second row
+        //Second col
         entries[0, 1] = m01;
 
-        // Third row
+        //Third col
         entries[0, 2] = m02;
 
+        // Second row 
+        //First col
         entries[1, 0] = m10;
 
+        //Second col
         entries[1, 1] = m11;
 
+        //Third col
         entries[1, 2] = m12;
 
+        //Third row
+        //First col
         entries[2, 0] = m20;
 
+        //Second col
         entries[2, 1] = m21;
 
+        //Third col
         entries[2, 2] = m22;
     }
 
@@ -56,11 +65,13 @@ public class HMatrix2D
         {
             for (int y = 0; y < 3; y++) //col
             {
+                //Adds the values from 2 matrices based on the same rows and columns. Only applies to matrices of same size.
                 Check.entries[x,y] = (left.entries[x, y] + right.entries[x, y]);
             }
         }
+        //returns the values after the calculation in the temporary matrix called Check.
         return Check;
-                //return new HMatrix2D(left.entries[0, 0] + right.entries[0, 0], left.entries[0, 1] + right.entries[0, 1], left.entries[0, 2] + right.entries[0, 2],
+            //return new HMatrix2D(left.entries[0, 0] + right.entries[0, 0], left.entries[0, 1] + right.entries[0, 1], left.entries[0, 2] + right.entries[0, 2],
             //left.entries[1, 0] + right.entries[1, 0], left.entries[1, 1] + right.entries[1, 1], left.entries[1, 2] + right.entries[1, 2],
             //left.entries[2, 0] + right.entries[2, 0], left.entries[2, 1] + right.entries[2, 1], left.entries[2, 2] + right.entries[2, 2]);
     }
@@ -72,9 +83,11 @@ public class HMatrix2D
         {
             for (int y = 0; y < 3; y++) //col
             {
-                Check.entries[x, y] = (left.entries[x, y] + right.entries[x, y]);
+                //Subtracts the values of right matrix from left matrix based on same row and column. Only applies to matrices of same size.
+                Check.entries[x, y] = (left.entries[x, y] - right.entries[x, y]);
             }
         }
+        //returns the values after the calculation in the temporary matrix called Check.
         return Check;
             //return new HMatrix2D(left.entries[0, 0] - right.entries[0, 0], left.entries[0, 1] - right.entries[0, 1], left.entries[0, 2] - right.entries[0, 2],
             //left.entries[1, 0] - right.entries[1, 0], left.entries[1, 1] - right.entries[1, 1], left.entries[1, 2] - right.entries[1, 2],
@@ -88,9 +101,11 @@ public class HMatrix2D
         {
             for (int y = 0; y < 3; y++) //col
             {
+                //Scalar multiplication of matrix where all the individual values for the rows and columns multiply by the same value.
                 Check.entries[x, y] = (left.entries[x, y] * scalar);
             }
         }
+        //returns the values after the calculation in the temporary matrix called Check.
         return Check;
         //return new HMatrix2D(left.entries[0, 0] * scalar, left.entries[0, 1] * scalar, left.entries[0, 2] * scalar,
             //left.entries[1, 0] * scalar, left.entries[1, 1] * scalar, left.entries[1, 2] * scalar,
@@ -101,6 +116,8 @@ public class HMatrix2D
     //
     public static HVector2D operator *(HMatrix2D left, HVector2D right)
     {
+        //returns a HVector2D variable whereby a matrix of size 3x3 multiplies by the HVector Matrix of 3x1.
+        // in this case, right.h is just a value of 1 and is just used to allow for matrix multiplication.
         return new HVector2D(
             left.entries[0, 0] * right.x + left.entries[0, 1] * right.y + left.entries[0, 2] * right.h,
             left.entries[1, 0] * right.x + left.entries[1, 1] * right.y + left.entries[1, 2] * right.h
@@ -118,6 +135,11 @@ public class HMatrix2D
         xx xx xx    10 xx xx
         xx xx xx    20 xx xx
         */
+
+    //As this is a matrix by matrix multiplication, the col size of the left matrix must match the row size of the right matrix.
+
+    //Here, we have the first row of the left matrix multiplied by the first column of the right matrix.
+    //Once we get the values from each multiplication, we add them together to form the first row first column value for the result matrix.
     left.entries[0, 0] * right.entries[0, 0] + left.entries[0, 1] * right.entries[1, 0] + left.entries[0, 2] * right.entries[2, 0],
 
     /* 
@@ -125,13 +147,19 @@ public class HMatrix2D
         xx xx xx    xx 11 xx
         xx xx xx    xx 21 xx
         */
+
+    //Similar to the first row, this line of code will return the first row second column value for the result matrix.
     left.entries[0, 0] * right.entries[0, 1] + left.entries[0, 1] * right.entries[1, 1] + left.entries[0, 2] * right.entries[2, 1],
 
-    // and so on for another 7 entries
+    //same thing here where i get the value for first row third column for result matrix.
     left.entries[0, 0] * right.entries[0, 2] + left.entries[0, 1] * right.entries[1, 2] + left.entries[0, 2] * right.entries[2, 2],
+
+    //Second row first to third columns for result matrix.
     left.entries[1, 0] * right.entries[0, 0] + left.entries[1, 1] * right.entries[1, 0] + left.entries[1, 2] * right.entries[2, 0],
     left.entries[1, 0] * right.entries[0, 1] + left.entries[1, 1] * right.entries[1, 1] + left.entries[1, 2] * right.entries[2, 1],
     left.entries[1, 0] * right.entries[0, 2] + left.entries[1, 1] * right.entries[1, 2] + left.entries[1, 2] * right.entries[2, 2],
+    
+    //Third row first to third column for result matrix.
     left.entries[2, 0] * right.entries[0, 0] + left.entries[2, 1] * right.entries[1, 0] + left.entries[2, 2] * right.entries[2, 0],
     left.entries[2, 0] * right.entries[0, 1] + left.entries[2, 1] * right.entries[1, 1] + left.entries[2, 2] * right.entries[2, 1],
     left.entries[2, 0] * right.entries[0, 2] + left.entries[2, 1] * right.entries[1, 2] + left.entries[2, 2] * right.entries[2, 2]
@@ -144,12 +172,14 @@ public class HMatrix2D
         {
             for (int y = 0; y < 3; y++) //col
             {
-                if (left.entries[x, y] != right.entries[x, y]) {//check all and if got diff in one part then its false. 
+                //check all and if got difference in one value within the same row and column then its false. 
+                if (left.entries[x, y] != right.entries[x, y]) {
                     return false;
                 }
             }
         }
-        return true; //If check finish no issues then both matrix equal
+        //If check finish no issues then both matrices are equal and this will return true.
+        return true; 
     }
 
     public static bool operator !=(HMatrix2D left, HMatrix2D right)
@@ -158,12 +188,14 @@ public class HMatrix2D
         {
             for (int y = 0; y < 3; y++) //col
             {
+                //check all and if got difference in one value within the same row and column then its true.
                 if (left.entries[x, y] != right.entries[x, y])
                 {
                     return true;
                 }
             }
         }
+        //Otherwise if there was no difference in values, the matrices are the same and this will return false.
         return false;
     }
 
@@ -193,7 +225,8 @@ public class HMatrix2D
         {
             for (int y = 0; y < 3; y++) //col
             {
-                entries[x, y] = x == y ? 1 : 0;
+                //A simplified version of checking for whether x = y and if it is true, then set value in row x and col y to be 1, otherwise set to 0.
+                entries[x, y] = x == y ? 1 : 0; 
                 //if (x == y)
                 //{
                 //entries[x,y] = 1;
@@ -209,17 +242,43 @@ public class HMatrix2D
 
     public void setTranslationMat(float transX, float transY)
     {
+        /*
+        set the translation matrix to 
+        1 0 0
+        0 1 0
+        0 0 1
+        */
         setIdentity();
+
+        //Then set the values for first row third column and second row third column to transX and transY respectively so that they can be used in a 3x3 matrix multiplication for 2D.
         entries[0, 2] = transX;
         entries[1, 2] = transY;
     }
 
     public void setRotationMat(float rotDeg)
     {
+        /*
+        set the translation matrix to 
+        1 0 0
+        0 1 0
+        0 0 1
+        */
         setIdentity();
+
+        //As Mathf uses radians instead of Degrees, we first have to convert the angle input into radians.
         float rad = rotDeg * Mathf.Deg2Rad;
+
+        /*
+        Afterwards we set the rotation matrix to be 
+        Cos(rad) -Sin(rad) 0
+        Sin(rad)  Cos(rad) 0
+            0        0     1
+        */
+        //First row
         entries[0, 0] = Mathf.Cos(rad);
         entries[0, 1] = (Mathf.Sin(rad) * -1);
+
+        //Second row
         entries[1, 0] = Mathf.Sin(rad);
         entries[1, 1] = Mathf.Cos(rad);
     }
@@ -236,7 +295,8 @@ public class HMatrix2D
         {
             for (int c = 0; c < 3; c++)
             {
-                result += entries[r, c] + "  ";
+                //Prints out the all values for the matrix row by column
+                result += entries[r, c] + "  "; 
             }
             result += "\n";
         }
