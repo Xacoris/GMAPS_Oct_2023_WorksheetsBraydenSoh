@@ -25,6 +25,7 @@ public class TransformMesh : MonoBehaviour
         // Your code here
         Rotate(45);
         //Translate(1, 1);
+        
     }
 
 
@@ -43,8 +44,9 @@ public class TransformMesh : MonoBehaviour
     {
         //create 3 new matrices for moving to origin, rotating the gameObject and moving back.
         HMatrix2D toOriginMatrix = new HMatrix2D();
-        HMatrix2D rotateMatrix = new HMatrix2D();
         HMatrix2D fromOriginMatrix = new HMatrix2D();
+        HMatrix2D rotateMatrix = new HMatrix2D();
+        
 
         //Set the values of the matrices using the functions from HMatrix2D
         //Sets values for toOriginMatrix as the negative of the current position so that the new position is 0,0
@@ -59,7 +61,7 @@ public class TransformMesh : MonoBehaviour
 
         // Your code here
 
-        transformMatrix = fromOriginMatrix * rotateMatrix * toOriginMatrix;
+        transformMatrix = fromOriginMatrix * toOriginMatrix * rotateMatrix;
         // Your code here;
 
         //call the transform function to translate and rotate the gameobject.

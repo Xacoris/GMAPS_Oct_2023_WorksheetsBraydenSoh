@@ -276,7 +276,7 @@ public class HMatrix2D
         */
         //First row
         entries[0, 0] = Mathf.Cos(rad);
-        entries[0, 1] = (Mathf.Sin(rad) * -1);
+        entries[0, 1] = -Mathf.Sin(rad);
 
         //Second row
         entries[1, 0] = Mathf.Sin(rad);
